@@ -1,5 +1,5 @@
 <template>
-  <div class="app">app {{msg}}</div>
+  <div id="msg">app {{msg}}</div>
 </template>
 
 <script>
@@ -13,8 +13,7 @@ export default {
 </script>
 
 <style>
-.app{
+#msg{
   color: red;
 }
 </style>
-
