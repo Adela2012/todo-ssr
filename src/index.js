@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
+import  './assets/styles/global.styl'
+import  './assets/styles/todo.styl'
 
 var root = document.createElement('div')
 document.body.appendChild(root)
