@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 
-const  isDev = process.env === 'production'
+const  isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   target: 'web',
@@ -37,7 +37,7 @@ const config = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.styl$/,
+        test: /\.(styl|stylus)$/,
         use: [
           'style-loader', 
           'css-loader', 
@@ -48,6 +48,20 @@ const config = {
             }
           },
           'stylus-loader'
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', 
+          'css-loader', 
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          'sass-loader'
         ]
       },
       {
