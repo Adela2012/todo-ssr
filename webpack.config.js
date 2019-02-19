@@ -86,7 +86,7 @@ if (isDev) {
   }
   config.output = {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.[chunkhash:8].js'
+    filename: '[name].[chunkhash:8].js'
   }
   config.module.rules.push(      {
     test: /\.(styl|stylus)$/,
@@ -113,7 +113,7 @@ if (isDev) {
     splitChunks: {
       cacheGroups: {
         commons: {
-            name: "commons",
+            name: "vendor",
             chunks: "initial",
             minChunks: 2
         }
