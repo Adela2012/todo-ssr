@@ -41,11 +41,12 @@
     "url-loader": "^1.1.2",
     "vue": "^2.6.6",
     "vue-loader": "^15.6.2",
+    "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "vue": "^2.6.7"
+    "vue": "^2.6.8"
   }
 }
