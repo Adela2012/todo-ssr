@@ -106,8 +106,6 @@ if (isDev) {
   })
   config.plugins.push(
     new ExtractPlugin('styles.[hash:8].css')
-    // new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
-    // new webpack.optimize.CommonsChunkPlugin({name: 'runtime'})
   )
   config.optimization = {
     splitChunks: {
