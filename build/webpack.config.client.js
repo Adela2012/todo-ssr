@@ -31,12 +31,11 @@ let config
 if (isDev) {
   console.warn('dev')
   config = merge(baseConfig, {
-    devtool: '#cheap-module-eval-source-map',
     module: {
       rules: [{
         test: /\.styl/,
         use: [
-          'vue-style-loader', 
+          'vue-style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -50,8 +49,7 @@ if (isDev) {
     },
     devServer,
     plugins:  defaultPlugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
     ])
   })
 } else {
@@ -69,9 +67,9 @@ if (isDev) {
         {
           test: /\.(styl|stylus)$/,
           use: ExtractPlugin.extract({
-            fallback: 'vue-style-loader', 
+            fallback: 'vue-style-loader',
             use: [
-              'css-loader', 
+              'css-loader',
               {
                 loader: 'postcss-loader',
                 options: {
@@ -86,19 +84,12 @@ if (isDev) {
     },
     plugins: defaultPlugins.concat([
       new ExtractPlugin('styles.[hash:8].css')
-      // new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
-      // new webpack.optimize.CommonsChunkPlugin({name: 'runtime'})
     ]),
     optimization: {
       splitChunks: {
-        cacheGroups: {
-          commons: {
-              name: "vendor",
-              chunks: "initial",
-              minChunks: 2
-          }
-        }
-      }
+        chunks: 'all'
+      },
+      runtimeChunk: true
     }
   })
 
