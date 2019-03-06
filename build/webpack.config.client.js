@@ -34,10 +34,16 @@ if (isDev) {
     devtool: '#cheap-module-eval-source-map',
     module: {
       rules: [{
-        test: /\.(styl|stylus)$/,
+        test: /\.styl/,
         use: [
-          'style-loader', 
-          'css-loader', 
+          'vue-style-loader', 
+          {
+            loader: 'css-loader',
+            // options: {
+            //   module: true,
+            //   localIdentName: '[path]-[name]-[hash:base64:5]'
+            // }
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -69,7 +75,7 @@ if (isDev) {
         {
           test: /\.(styl|stylus)$/,
           use: ExtractPlugin.extract({
-            fallback: 'style-loader', 
+            fallback: 'vue-style-loader', 
             use: [
               'css-loader', 
               {
