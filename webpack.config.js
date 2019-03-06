@@ -6,7 +6,7 @@ const ExtractPlugin = require('extract-text-webpack-plugin')
 
 const  isDev = process.env.NODE_ENV === 'development'
 
-const config = {
+let config = {
   target: 'web',
   mode: isDev ? 'development' : 'production',
   entry: path.join(__dirname, 'src/index.js'),
