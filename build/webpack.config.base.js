@@ -1,11 +1,12 @@
 const path = require('path')
+const creatVueLoaderOptions = require('./vue-loader.config')
 
 const  isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   target: 'web',
   mode: isDev ? 'development' : 'production',
-  entry: path.join(__dirname, '../src/index.js'),
+  entry: path.join(__dirname, '../client/index.js'),
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.[hash:8].js' 
@@ -14,7 +15,8 @@ const config = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: creatVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
