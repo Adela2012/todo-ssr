@@ -11,7 +11,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
     "lint": "eslint --ext .js --ext .jsx --ext .vues client/",
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vues client/",
-    "precommit": "npm run lint",
+    "precommit": "npm run lint-fix",
     "clean": "rimraf dist"
   },
   "repository": {
