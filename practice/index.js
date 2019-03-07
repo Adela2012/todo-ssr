@@ -1,2 +1,3 @@
 // import './instance'
-import './lifecircle'
+// import './lifecircle'
+import './data-binding'
