@@ -9,12 +9,12 @@ export default () => {
     linkActiveClass: 'link-active',
     linkExactActiveClass: 'link-exact-active',
     scrollBehavior (to, from, savedPosition) {
-      if(savedPosition) {
+      if (savedPosition) {
         return savedPosition
       } else {
-        return {x: 0, y:0}
+        return { x: 0, y: 0 }
       }
-    },
+    }
     // fallback: true, // true：hash的模式，false：每次从后台返回新的
     // parseQuery (query) {
     //   console.log('query',query)

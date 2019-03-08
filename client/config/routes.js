@@ -7,7 +7,18 @@ export default [
     redirect: '/app'
   }, {
     path: '/app',
-    component: Todo
+    component: Todo,
+    name: 'app',
+    props: (route) => ({id: route.query.a}),
+    meta: {
+      title: 'app-title',
+      description: 'this is a app'
+    },
+    children: [{
+      path: ':id',
+      component: Login,
+      props: true
+    }]
   }, {
     path: '/login',
     component: Login
