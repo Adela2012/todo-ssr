@@ -23,7 +23,9 @@ const defaultPlugins = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HtmlPlugin()
+  new HtmlPlugin({
+    template: path.resolve(__dirname, 'template.html')
+  })
 ]
 
 let config
