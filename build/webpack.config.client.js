@@ -13,6 +13,9 @@ const devServer = {
   host: '0.0.0.0',
   port: '8989',
   overlay: {errors: true},
+  historyApiFallback: {
+    index: '/public/index.html' // output
+  },
   hot: true
 }
 
