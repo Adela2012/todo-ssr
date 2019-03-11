@@ -19,7 +19,7 @@
 <script>
 import Footer from './layout/Footer.jsx'
 import Header from './layout/Header.vue'
-import {mapState, mapGetters} from 'vuex'
+import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
   components: {Footer, Header},
   data () {
@@ -37,8 +37,13 @@ export default {
     //   return this.$store.getters.fullName
     // }
   },
+  methods: {
+    ...mapActions(['updateCountAsync'])
+  },
   mounted() {
     this.$store.commit('updateCount',1)
+    // this.$store.dispatch('updateCountAsync', {num:2,time:1000})
+    this.updateCountAsync({num:2, time:1000})
   }
 }
 </script>
