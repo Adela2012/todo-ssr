@@ -11,11 +11,27 @@ Vue.use(Vuex)
 const router = createRouter()
 const store = createStore()
 
-store.registerModule('c', {
-  state: {
-    text: 'c'
-  }
-})
+// store.registerModule('c', {
+//   state: {
+//     text: 'c'
+//   }
+// })
+
+// store.unregisterModule('c')
+
+// store.watch((state) => state.count+1, (newCount) => {
+//   console.log('new count is ', newCount)
+// })
+
+// store.subscribe((mutations, state) => {
+//   console.log(mutations.type)
+//   console.log(mutations.payload)
+// })
+
+// store.subscribeAction((actions, state) => {
+//   console.log(actions.type)
+//   console.log(actions.payload)
+// })
 
 router.beforeEach((to, from, next) => {
   // console.log('index before enter each invoked')

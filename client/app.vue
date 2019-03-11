@@ -58,11 +58,14 @@ export default {
     // })
   },
   mounted() {
-    this.$store.commit('updateCount',1)
-    // this.$store.dispatch('updateCountAsync', {num:2,time:1000})
-    this.updateCountAsync({num:2, time:1000})
+    this.updateCountAsync({num:2, time:1000})      
     // this.updateTextA(111)
     // this.testAction()
+    // this.$store.dispatch('updateCountAsync', {num:2,time:1000})
+    // let i = 1
+    // setInterval(() => {
+    //   this.$store.commit('updateCount',i++)
+    // }, 1000);
   }
 }
 </script>

@@ -11,7 +11,12 @@ export default () => {
     state: defaultState,
     mutations,
     getters,
-    actions,
+    actions
+    // plugins: [
+    //   (store) => {
+    //     console.log('my plugins invoked')
+    //   }
+    // ]
     // modules: {
     //   a: {
     //     namespaced: true,
