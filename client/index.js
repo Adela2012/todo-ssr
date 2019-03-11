@@ -11,6 +11,12 @@ Vue.use(Vuex)
 const router = createRouter()
 const store = createStore()
 
+store.registerModule('c', {
+  state: {
+    text: 'c'
+  }
+})
+
 router.beforeEach((to, from, next) => {
   // console.log('index before enter each invoked')
   next()
