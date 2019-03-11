@@ -2,6 +2,7 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
+    <p>count：{{count}}</p>
     <router-link :to="{name: 'app'}">app</router-link>
     <router-link to="/app/123">app-123</router-link>
     <router-link to="/app/456">app-456</router-link>
@@ -25,6 +26,14 @@ export default {
     return {
       msg: 'hello'
     }
+  },
+  computed: {
+    count() {
+      return this.$store.state.count
+    }
+  },
+  mounted() {
+    this.$store.commit('updateCount',1)
   }
 }
 </script>
