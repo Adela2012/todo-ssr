@@ -8,7 +8,7 @@ const config = {
   mode: isDev ? 'development' : 'production',
   entry: path.join(__dirname, '../client/client-entry.js'),
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, '../public'),
     filename: 'bundle.[hash:8].js',
     publicPath: 'http://127.0.0.1:8989/public/'
   },
@@ -34,10 +34,6 @@ const config = {
       //   loader: 'babel-loader',
       //   exclude: /node_modules/
       // },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
       {
         test: /\.(png|gif|jpe?g|svg)$/,
         use: {
