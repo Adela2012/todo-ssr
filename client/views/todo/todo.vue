@@ -41,6 +41,9 @@ export default {
       filter: 'all'
     }
   },
+  metaInfo: {
+    title: 'todo'
+  },
   components: {
     Item,
     Tabs

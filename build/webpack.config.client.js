@@ -63,7 +63,7 @@ if (isDev) {
   console.warn('prod')
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js'),
+      app: path.join(__dirname, '../client/client-entry.js'),
       vendor: ['vue']
     },
     output: {

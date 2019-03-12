@@ -19,6 +19,9 @@ import Footer from './layout/Footer.jsx'
 import Header from './layout/Header.vue'
 import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
+  metaInfo: {
+    title: 'Adela\'s todo list'
+  },
   components: {Footer, Header},
   data () {
     return {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import Meta from 'vue-meta'
 
 import createStore from './store/store'
 import createRouter from './config/router'
@@ -9,6 +10,7 @@ import './assets/styles/global.styl'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+Vue.use(Meta)
 
 export default () => {
   const store = createStore()

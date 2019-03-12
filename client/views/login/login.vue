@@ -18,6 +18,9 @@ export default {
     console.log('login before route leave')
     next()
   },
+  metaInfo: {
+    title: 'login'
+  },
   name: 'login',
   props: ['id'],
   mounted () {
