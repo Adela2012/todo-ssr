@@ -14,8 +14,9 @@ export default {
     console.log('login before route update')
     next()
   },
-  beforeRouteLeave (to, from, ) {
+  beforeRouteLeave (to, from, next) {
     console.log('login before route leave')
+    next()
   },
   name: 'login',
   props: ['id'],

@@ -7,13 +7,13 @@ const path = require('path')
 const fs = require('fs')
 
 const serverConfig = require('../../build/webpack.config.server')
+const serverRender = require('./server-render')
 
 const serverCompiler = webpack(serverConfig)
-
 const mfs = new MemoryFS()
 serverCompiler.outputFileSystem = mfs
 
-let bundle 
+let bundle
 serverCompiler.watch({}, (err, stats) => {
   if (err) throw err
   stats = stats.toJson()
@@ -25,22 +25,38 @@ serverCompiler.watch({}, (err, stats) => {
     'vue-ssr-server-bundle.json'
   )
 
-  bundle = mfs.readFileSync(mfs.readFileSync(bundlePath, 'utf-8'))
+  bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'))
+  console.log(`new bundle is generated`)
 
-  const handleSSR = async (ctx) => {
-    if (bundle) {
-      ctx.body = 'waiting for bundle ok...'
-    }
+})
 
-    const clientManifestResp = await axios.get('http://127.0.0.1:8989/vue-ssr-client-manifest.json')
 
-    const clientManifest = clientManifestResp.data
+const handleSSR = async (ctx) => {
+  if (!bundle) {
+    ctx.body = 'waiting for bundle ok...'
+  }
 
-    const template = fs.readFileSync(path.join(__dirname, '../server.template.ejs'))
+  const clientManifestResp = await axios.get(
+    'http://127.0.0.1:8989/public/vue-ssr-client-manifest.json'
+  )
 
-    const renderer = VueServerRenderer.createBundleRenderer(bundle, {
+  const clientManifest = clientManifestResp.data
+
+  const template = fs.readFileSync(
+    path.join(__dirname, '../server.template.ejs'),
+    'utf-8'
+  )
+
+  const renderer = VueServerRenderer
+    .createBundleRenderer(bundle, {
       inject: false,
       clientManifest
     })
-  }
-})
+
+  await serverRender(ctx, renderer, template)
+}
+
+const router = new Router()
+router.get('*', handleSSR)
+
+module.exports = router

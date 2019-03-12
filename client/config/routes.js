@@ -1,39 +1,36 @@
 // import Todo from '../views/todo/todo.vue'
-import Login from '../views/login/login.vue'
+// import Login from '../views/login/login.vue'
 
 export default [
   {
     path: '/',
-    redirect: '/app'
-  }, {
+    redirect: '/login'
+  },
+
+  {
     path: '/app',
-    components: {
-      default: () => import('../views/todo/todo.vue'),
-      foot: Login
-    },
-    beforeEnter (to, from, next) {
-      // console.log('routes before enter invoked')
-      next()
-    },
+    component: () => import('../views/todo/todo.vue'),
     name: 'app',
     props: (route) => ({ id: route.query.a }),
     meta: {
       title: 'app-title',
       description: 'this is a app'
     },
-    children: [{
-      path: ':id',
-      component: Login,
-      props: true
-    }]
-  }, {
-    path: '/login',
-    components: {
-      default: Login,
-      foot: () => import('../views/todo/todo.vue')
+    beforeEnter (to, from, next) {
+      // console.log('routes before enter invoked')
+      next()
     }
-  }, {
-    path: '/login/exact',
-    component: Login
+  },
+
+  {
+    path: '/login',
+    component: () => import('../views/login/login.vue')
   }
+  // {
+  //   path: '/exact',
+  //   components: {
+  //     default: () => import('../views/todo/todo.vue'),
+  //     foot:  () => import('../views/login/login.vue')
+  //   },
+  // }
 ]

@@ -8,18 +8,19 @@
       @keyup.enter="addTodo"
     >
     <item
+      v-if="filteredTodos.length>0"
       :todo="todo"
       v-for="todo in filteredTodos"
       :key="todo.id"
       @del="deleteTodo"
     />
     <tabs
+      v-if="todos.length>0"
       :filter="filter"
       :todos="todos"
       @toggle="toggleFilter"
       @clearAllCompleted="clearAllCompleted"
     />
-    <router-view></router-view>
   </section>
 </template>
 
@@ -28,13 +29,15 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id = 0
 export default {
-  mounted () {
-    console.log('this.id', this.id)
-  },
-  props: ['id'],
+  // mounted () {
+  //   console.log('this.id', this.id)
+  // },
+  // props: ['id'],
   data () {
     return {
-      todos: [],
+      todos: [{
+        completed: true
+      }],
       filter: 'all'
     }
   },

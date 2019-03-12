@@ -4,15 +4,12 @@
     <Header></Header>
     <p>count：{{count}}， fullName：{{fullName}}</p>
     <!-- <p>textA: {{textA}}，textPlus：{{textPlus}}</p> -->
-    <router-link :to="{name: 'app'}">app</router-link>
-    <router-link to="/app/123">app-123</router-link>
-    <router-link to="/app/456">app-456</router-link>
+    <router-link to="/app">app</router-link>
     <router-link to="/login">login</router-link>
-    <router-link to="/login/exact">login-exact</router-link>
     <transition name="fade">
       <router-view/>
     </transition>
-    <router-view name="foot"/>
+    <!-- <router-view name="foot"/> -->
     <Footer></Footer>
   </div>
 </template>
@@ -40,7 +37,7 @@ export default {
     //   return this.$store.state.count
     // },
     ...mapGetters({
-      fullName: 'fullName', 
+      fullName: 'fullName',
       // textPlus: 'a/textPlus'
     })
     // fullName () {
@@ -58,7 +55,7 @@ export default {
     // })
   },
   mounted() {
-    this.updateCountAsync({num:2, time:1000})      
+    this.updateCountAsync({num:2, time:1000})
     // this.updateTextA(111)
     // this.testAction()
     // this.$store.dispatch('updateCountAsync', {num:2,time:1000})
