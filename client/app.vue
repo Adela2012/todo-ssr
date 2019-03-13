@@ -10,6 +10,7 @@
       <router-view/>
     </transition>
     <!-- <router-view name="foot"/> -->
+    <notification content="test notify" />
     <Footer></Footer>
   </div>
 </template>
