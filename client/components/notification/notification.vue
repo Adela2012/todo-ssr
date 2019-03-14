@@ -28,7 +28,8 @@ export default {
   },
   data () {
     return {
-      visible: true
+      visible: true,
+      height: 0
     }
   },
   computed: {

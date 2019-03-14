@@ -19,22 +19,26 @@ export default {
       if (this.autoClose) {
         this.timer = setTimeout(() => {
           this.visible = false
-        }, this.autoClose);
+        }, this.autoClose)
       }
     },
     clearTimer () {
       if (this.timer) {
         clearTimeout(this.timer)
       }
+    },
+    afterEnter () {
+      this.height = this.$el.offsetHeight
     }
   },
-  beforeDestory() {
+  beforeDestory () {
     this.clearTimeout()
   },
   data () {
     return {
       verticalOffset: 0,
-      autoClose: 3000
+      autoClose: 3000,
+      visible: false
     }
   }
 }
