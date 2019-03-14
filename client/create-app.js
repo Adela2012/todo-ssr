@@ -9,7 +9,6 @@ import Notification from './components/notification'
 import App from './app.vue'
 import './assets/styles/global.styl'
 
-
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(Meta)

@@ -14,6 +14,7 @@ const devServer = {
   host: '0.0.0.0',
   port: '8989',
   overlay: {errors: true},
+  headers: {'Access-Control-Allow-Origin': '*'},
   historyApiFallback: {
     index: '/public/index.html' // output
   },

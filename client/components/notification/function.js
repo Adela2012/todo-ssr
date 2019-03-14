@@ -3,15 +3,21 @@ import Component from './func-notification'
 
 const NotificationConstructor = Vue.extend(Component)
 
-
 let seed = 1
 let instances = []
 const notify = (options) => {
   if (Vue.prototype.$isServer) return
 
-  const instance = new NotificationConstructor({})
+  const {autoClose, ...rest} = options
+
+  const instance = new NotificationConstructor({
+    propsData: {...rest},
+    data: {
+      autoClose: autoClose === undefined ? 3000 : autoClose
+    }
+  })
   instance.id = `notification_${seed++}`
-  instance.$mount()
+  instance.vm = instance.$mount()
   document.body.appendChild(instance.vm.$el)
 
   let verticalOffset = 0

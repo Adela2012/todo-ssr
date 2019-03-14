@@ -10,7 +10,8 @@
       <router-view/>
     </transition>
     <!-- <router-view name="foot"/> -->
-    <notification content="test notify" />
+    <button @click="notify">click me</button>
+    <!-- <notification content="test notify" /> -->
     <Footer></Footer>
   </div>
 </template>
@@ -57,9 +58,15 @@ export default {
     // ...mapMutations({
     //   updateTextA: 'a/updateText'
     // })
+    notify () {
+      this.$notify({
+        content: 'test $notify',
+        btn: 'close'
+      })
+    }
   },
   mounted() {
-    this.updateCountAsync({num:2, time:1000})
+    // this.updateCountAsync({num:2, time:1000})
     // this.updateTextA(111)
     // this.testAction()
     // this.$store.dispatch('updateCountAsync', {num:2,time:1000})
