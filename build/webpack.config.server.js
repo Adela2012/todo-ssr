@@ -4,7 +4,7 @@ const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
 const merge = require('webpack-merge')
 const vueServerPlugin = require('vue-server-renderer/server-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // 以确保正确解析 .vue文件 <script>块中的js代码
 
 let config
 

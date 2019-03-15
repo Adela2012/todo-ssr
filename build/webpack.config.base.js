@@ -1,5 +1,5 @@
 const path = require('path')
-const creatVueLoaderOptions = require('./vue-loader.config')
+const createVueLoaderOptions = require('./vue-loader.config')
 
 const  isDev = process.env.NODE_ENV === 'development'
 
@@ -23,17 +23,17 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: creatVueLoaderOptions(isDev)
+        options: createVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
         loader: 'babel-loader'
       },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/
-      // },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.(png|gif|jpe?g|svg)$/,
         use: {
