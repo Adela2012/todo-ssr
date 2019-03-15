@@ -11,10 +11,15 @@ export default {
     return (
       <div class="tabs">
         <ul class="tabs-header">
-          {this.$slot.default}
+          {this.$slots.default}
         </ul>
       </div>
     )
+  },
+  methods: {
+    onclick (index) {
+      this.$emit('change', index)
+    }
   }
 }
 </script>

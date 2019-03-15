@@ -1,5 +1,12 @@
 <template>
   <section class="real-app">
+    <div class="tabs-container">
+      <tabs :value="tabValue" @change="tabChangeHandle">
+        <tab label="tab1" index="1"> 111</tab>
+        <tab index="2"><span style="color: red;" slot="label">tab2</span>222</tab>
+        <tab label="tab3"  index="3"> 222</tab>
+      </tabs>
+    </div>
     <input
       type="text"
       class="add-input"
@@ -14,7 +21,7 @@
       :key="todo.id"
       @del="deleteTodo"
     />
-    <tabs
+    <helper
       v-if="todos.length>0"
       :filter="filter"
       :todos="todos"
@@ -26,7 +33,7 @@
 
 <script>
 import Item from './item.vue'
-import Tabs from './tabs.vue'
+import Helper from './tabs.vue'
 let id = 0
 export default {
   // mounted () {
@@ -35,10 +42,9 @@ export default {
   // props: ['id'],
   data () {
     return {
-      todos: [{
-        completed: true
-      }],
-      filter: 'all'
+      todos: [],
+      filter: 'all',
+      tabValue: '1'
     }
   },
   metaInfo: {
@@ -46,7 +52,7 @@ export default {
   },
   components: {
     Item,
-    Tabs
+    Helper
   },
   computed: {
     filteredTodos () {
@@ -74,6 +80,9 @@ export default {
     },
     clearAllCompleted () {
       this.todos = this.todos.filter(todo => !todo.completed)
+    },
+    tabChangeHandle (value) {
+      this.tabValue = value
     }
   }
 }
@@ -105,4 +114,7 @@ export default {
   border: none;
   box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
+.tabs-container
+  background #ffffff
+  padding 0 15px
 </style>

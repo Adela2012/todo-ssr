@@ -13,20 +13,25 @@ export default {
   },
   computed: {
     active () {
-      return false
+      return this.$parent.value === this.index
     }
   },
   render () {
-    const tab = this.$slot.label || <span>{this.label}</span>
+    const tab = this.$slots.label || <span>{this.label}</span>
     const className = {
       tab: true,
       active: this.active
     }
     return (
-      <li class={className}>
+      <li class={className} on-click={this.onTabClick}>
         {tab}
       </li>
     )
+  },
+  methods: {
+    onTabClick () {
+      this.$parent.onclick(this.index)
+    }
   }
 }
 </script>
