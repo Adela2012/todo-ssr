@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   beforeRouteEnter (to, from, next) {
     console.log('login before route enter')
@@ -44,18 +45,21 @@ export default {
       errorMsg: ''
     }
   },
+  computed: {
+  },
   methods: {
+    ...mapActions(['login']),
     doSubmit (e) {
       e.preventDefault()
       if (this.validate()) {
         // 调用接口
-        // this.login({
-        //   username: this.username,
-        //   password: this.password
-        // })
-        //   .then(() => {
-        //     this.$router.replace('/app')
-        //   })
+        this.login({
+          username: this.username,
+          password: this.password
+        })
+          .then(() => {
+            this.$router.replace('/app')
+          })
       }
     },
     validate () {
