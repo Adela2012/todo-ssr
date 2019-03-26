@@ -30,15 +30,17 @@
 <script>
 import Item from './item.vue'
 import Helper from './helper.vue'
+import {mapState, mapActions} from 'vuex'
 let id = 0
 export default {
-  // mounted () {
-  //   console.log('this.id', this.id)
-  // },
+  mounted () {
+    // console.log('this.id', this.id)
+    this.fetchTodos()
+  },
   // props: ['id'],
   data () {
     return {
-      todos: [],
+      // todos: [],
       filter: 'all',
       states: ['all', 'active', 'completed']
     }
@@ -51,6 +53,7 @@ export default {
     Helper
   },
   computed: {
+    ...mapState(['todos']),
     filteredTodos () {
       if (this.filter === 'all') {
         return this.todos
@@ -60,22 +63,23 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchTodos']),
     addTodo (e) {
-      this.todos.unshift({
-        id: id++,
-        content: e.target.value.trim(),
-        completed: false
-      })
-      e.target.value = ''
+      // this.todos.unshift({
+      //   id: id++,
+      //   content: e.target.value.trim(),
+      //   completed: false
+      // })
+      // e.target.value = ''
     },
     deleteTodo (id) {
-      this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
+      // this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
     },
     clearAllCompleted () {
-      this.todos = this.todos.filter(todo => !todo.completed)
+      // this.todos = this.todos.filter(todo => !todo.completed)
     },
     tabChangeHandle (value) {
-      this.filter = value
+      // this.filter = value
     }
   }
 }

@@ -6,7 +6,7 @@ const className = 'todo'
 const preName = `${baseUrl}/${className}`
 
 // const request = axios.create({
-//   baseUrl: 'https://d.apicloud.com/mcm/api'
+//   baseURL: 'https://d.apicloud.com/mcm/api'
 // })
 const request = axios.create()
 
