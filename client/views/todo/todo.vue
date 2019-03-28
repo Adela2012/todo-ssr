@@ -34,9 +34,12 @@ import Helper from './helper.vue'
 import {mapState, mapActions} from 'vuex'
 let id = 0
 export default {
+  asyncData ({ store }) {
+    store.dispatch('fetchTodos')
+  },
   mounted () {
     // console.log('this.id', this.id)
-    this.fetchTodos()
+    // this.fetchTodos()
   },
   // props: ['id'],
   data () {

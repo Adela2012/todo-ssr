@@ -26,6 +26,14 @@
 <script>
 import {mapActions} from 'vuex'
 export default {
+  asyncData ({ store }) {
+    // store.dispatch('fetchTodos')
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(123)
+      }, 0);
+    })
+  },
   beforeRouteEnter (to, from, next) {
     console.log('login before route enter')
     next()
@@ -44,8 +52,6 @@ export default {
       password: '',
       errorMsg: ''
     }
-  },
-  computed: {
   },
   methods: {
     ...mapActions(['login']),
