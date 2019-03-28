@@ -35,11 +35,12 @@ import {mapState, mapActions} from 'vuex'
 let id = 0
 export default {
   asyncData ({ store }) {
-    store.dispatch('fetchTodos')
+    return store.dispatch('fetchTodos')
   },
   mounted () {
-    // console.log('this.id', this.id)
-    // this.fetchTodos()
+    if (this.todos && this.todos.length < 1) {
+      this.fetchTodos()
+    }
   },
   // props: ['id'],
   data () {

@@ -3,7 +3,7 @@ const ejs = require('ejs')
 module.exports = async (ctx, renderer, template) => {
   ctx.headers['Content-Type'] = 'text/html'
 
-  const context = { url: ctx.path }
+  const context = { url: ctx.path, user: ctx.session.user }
 
   try {
     const appString = await renderer.renderToString(context)
@@ -14,7 +14,8 @@ module.exports = async (ctx, renderer, template) => {
       appString,
       style: context.renderStyles(),
       scripts: context.renderScripts(),
-      title
+      title: title.text(),
+      initialState: context.renderState()
     })
 
     ctx.body = html
