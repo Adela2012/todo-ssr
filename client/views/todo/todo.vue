@@ -37,11 +37,11 @@ export default {
   asyncData ({ store }) {
     return store.dispatch('fetchTodos')
   },
-  mounted () {
-    if (this.todos && this.todos.length < 1) {
-      this.fetchTodos()
-    }
-  },
+  // mounted () {
+  //   if (this.todos && this.todos.length < 1) {
+  //     this.fetchTodos()
+  //   }
+  // },
   // props: ['id'],
   data () {
     return {
