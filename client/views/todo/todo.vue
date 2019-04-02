@@ -35,7 +35,10 @@ import {mapState, mapActions} from 'vuex'
 let id = 0
 export default {
   asyncData ({ store }) {
-    return store.dispatch('fetchTodos')
+    if (store.state.user) {
+      return store.dispatch('fetchTodos')
+    }
+    return Promise.resolve()
   },
   // mounted () {
   //   if (this.todos && this.todos.length < 1) {
