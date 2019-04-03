@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
 const merge = require('webpack-merge')
-const vueServerPlugin = require('vue-server-renderer/server-plugin')
+// const vueServerPlugin = require('vue-server-renderer/server-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // 以确保正确解析 .vue文件 <script>块中的js代码
 
 let config
@@ -45,8 +45,8 @@ config = merge(baseConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"server"'
-    }),
-    new vueServerPlugin()
+    })
+    // new vueServerPlugin()
   ]
 })
 
