@@ -9,12 +9,12 @@ const fs = require('fs')
 const serverConfig = require('../../build/webpack.config.server')
 const serverRender = require('./server-render-no-bundle')
 
-const NativeModule = require('module')
-const vm = require('vm')
+// const NativeModule = require('module')
+// const vm = require('vm')
 
 const serverCompiler = webpack(serverConfig)
-const mfs = new MemoryFS()
-serverCompiler.outputFileSystem = mfs
+// const mfs = new MemoryFS()
+// serverCompiler.outputFileSystem = mfs
 
 let bundle
 serverCompiler.watch({}, (err, stats) => {
@@ -28,20 +28,23 @@ serverCompiler.watch({}, (err, stats) => {
     'server-entry.js'
   )
 
-  try {
-    const m = { exports: {} }
-    const bundleStr = mfs.readFileSync(bundlePath, 'utf-8')
-    const wrapper = NativeModule.wrap(bundleStr)
-    const script = new vm.Script(wrapper, {
-      filename: 'server-entry.js',
-      displayErrors: true
-    })
-    const result = script.runInThisContext()
-    result.call(m.exports, m.exports, require, m)
-    bundle = m.exports.default
-  } catch (error) {
-    console.log('compile error: ' + error)
-  }
+  delete require.cache[bundlePath]
+  bundle = require('../../server-build/server-entry.js').default
+
+  // try {
+  //   const m = { exports: {} }
+  //   const bundleStr = mfs.readFileSync(bundlePath, 'utf-8')
+  //   const wrapper = NativeModule.wrap(bundleStr)
+  //   const script = new vm.Script(wrapper, {
+  //     filename: 'server-entry.js',
+  //     displayErrors: true
+  //   })
+  //   const result = script.runInThisContext()
+  //   result.call(m.exports, m.exports, require, m)
+  //   bundle = m.exports.default
+  // } catch (error) {
+  //   console.log('compile error: ' + error)
+  // }
   console.log(`new bundle is generated`)
 })
 
