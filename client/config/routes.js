@@ -9,7 +9,7 @@ export default [
 
   {
     path: '/app',
-    component: () => import('../views/todo/todo.vue'),
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/todo/todo.vue'),
     // component: Todo,
     name: 'app',
     props: (route) => ({ id: route.query.a }),
@@ -25,7 +25,7 @@ export default [
 
   {
     path: '/login',
-    component: () => import('../views/login/login.vue')
+    component: () => import(/* webpackChunkName: "login-view" */ '../views/login/login.vue')
     // component: Login
   }
   // {

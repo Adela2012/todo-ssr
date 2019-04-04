@@ -96,7 +96,8 @@ if (isDev) {
       ]
     },
     plugins: defaultPlugins.concat([
-      new ExtractPlugin('styles.[hash:8].css')
+      new ExtractPlugin('styles.[hash:8].css'),
+      new webpack.NamedChunksPlugin()
     ]),
     optimization: {
       splitChunks: {

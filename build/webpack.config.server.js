@@ -3,11 +3,23 @@ const webpack = require('webpack')
 const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
 const merge = require('webpack-merge')
-// const vueServerPlugin = require('vue-server-renderer/server-plugin')
+const vueServerPlugin = require('vue-server-renderer/server-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // 以确保正确解析 .vue文件 <script>块中的js代码
 
 let config
 
+const isDev = process.env.NODE_ENV === 'development'
+const plugins = [
+  new VueLoaderPlugin(),
+  new ExtractPlugin('styles.[hash:8].css'),
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.VUE_ENV': '"server"'
+  })
+]
+if (isDev) {
+  plugins.push(new vueServerPlugin() )
+}
 console.warn('server dev')
 config = merge(baseConfig, {
   target: 'node',
@@ -39,15 +51,7 @@ config = merge(baseConfig, {
       }
     ]
   },
-  plugins:  [
-    new VueLoaderPlugin(),
-    new ExtractPlugin('styles.[hash:8].css'),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VUE_ENV': '"server"'
-    })
-    // new vueServerPlugin()
-  ]
+  plugins
 })
 
 config.resolve = {
